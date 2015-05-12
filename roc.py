@@ -36,21 +36,22 @@ def main():
   scores1 = read_data(sys.argv[1]) ## Read attack scores
   scores2 = read_data(sys.argv[2]) ## Read normal traffic scores
 
-  thresholds_all = []
+  thresholds = []
   # Thresholds
   for score in scores1:
-    thresholds_all.append(float(score))
+    thresholds.append(float(score))
 
   for score in scores2:
-    thresholds_all.append(float(score))
+    thresholds.append(float(score))
 
-  thresholds = []
+  #thresholds = []
   #for i ,v in enumerate(thresholds_all):
   #  if(i == 0 or i == (len(thresholds_all)-1) or i % 5000 == 0):
   #    thresholds.append(v)
+
   
-  thresholds = ((sorted(thresholds_all))[::5000])
-  thresholds.append((sorted(thresholds_all))[-1])
+  thresholds = sorted(thresholds)
+  #thresholds.append((sorted(thresholds_all))[-1])
 
   # Extract filenames from command line arguments
   arg1 = sys.argv[1].split('.dat')
