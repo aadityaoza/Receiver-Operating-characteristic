@@ -58,7 +58,7 @@ def main():
   arg2 = sys.argv[2].split('.dat')
 
   # Results file for writing false positive and true positive rate
-  f =open('roc_'+arg1[0]+'.dat' , 'w')
+  f =open('roc.dat' , 'w')
 
   # Calculate true positives and false positives for each threshold
   # and write it in the roc results file
@@ -95,16 +95,16 @@ def main():
   proc.stdin.write('set key off\n')
   proc.stdin.write('set grid\n')
   proc.stdin.write('set title "'+arg1[0]+'"\n')
-  proc.stdin.write('plot \'roc_'+arg1[0]+'.dat\' using 1:2 with lines\n')
+  proc.stdin.write('plot \'roc.dat\' using 1:2 with lines\n')
   proc.stdin.write('quit')
 
   # Calculate Area under the curve (AUC)
-  f =open('roc_'+arg1[0]+'.dat' , 'r')
+  f =open('roc.dat' , 'r')
   lines = f.readlines()
   area = 0
 
     # Write AUC to file
-  f2 =open('auc_'+arg1[0]+'.dat' , 'w')
+  f2 =open('auc.dat' , 'w')
 
   x_prev = float(lines[0].split()[0])
   y_prev = float(lines[0].split()[1])
