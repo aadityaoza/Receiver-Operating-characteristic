@@ -26,15 +26,16 @@ def calc_tp(scores,threshold):
 def main():
   
   scores1 = [] ## Array to store scores of attack traffic
-  scores2 = [] ## Array to store scores of normal traffic
+  scores2 = [] ## Array to store scores of benign traffic
 
-  if(len(sys.argv)<4):
+  if(len(sys.argv)!= 4):
     print 'Incorrect number of arguments'
     print 'Correct input - python generateROC.py attackFile.dat benignFile.dat  ROC_plot_title'
     sys.exit()
-  
+
+  print(sys.argv)
   scores1 = read_data(sys.argv[1]) ## Read attack scores
-  scores2 = read_data(sys.argv[2]) ## Read normal traffic scores
+  scores2 = read_data(sys.argv[2]) ## Read benign traffic scores
 
   thresholds = []
   # Thresholds
@@ -94,7 +95,7 @@ def main():
   proc.stdin.write('set ytics 0.1\n')
   proc.stdin.write('set key off\n')
   proc.stdin.write('set grid\n')
-  proc.stdin.write('set title "'+arg1[0]+'"\n')
+  proc.stdin.write('set title "'+sys.argv[3]+'"\n')
   proc.stdin.write('plot \'roc.dat\' using 1:2 with lines\n')
   proc.stdin.write('quit')
 
