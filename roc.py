@@ -30,7 +30,7 @@ def main():
 
   if(len(sys.argv)!= 4):
     print 'Incorrect number of arguments'
-    print 'Correct input - python generateROC.py attackFile.dat benignFile.dat  ROC_plot_title'
+    print 'Correct input - python roc.py attacks.dat benign_traffic.dat  ROC_plot_title'
     sys.exit()
 
   print(sys.argv)
@@ -77,7 +77,7 @@ def main():
   proc.stdin.write('set terminal png\n')
   proc.stdin.write('set xlabel "Packets"\n')
   proc.stdin.write('set ylabel "Scores"\n')
-  proc.stdin.write('set output \'BOX_'+arg1[0]+'.png\'\n')
+  proc.stdin.write('set output \'BOX_plot.png\'\n')
   proc.stdin.write('set title \''+sys.argv[3]+'\'\n')
   proc.stdin.write('plot "'+sys.argv[1]+'" title "Attack Traffic" , "'+sys.argv[2]+'" title "Benign Traffic"\n')
   
@@ -90,7 +90,7 @@ def main():
   proc.stdin.write('set ylabel "True positive rate"\n')
   proc.stdin.write('set xrange [-0.025:1.025]\n')
   proc.stdin.write('set yrange [0:1.025]\n')
-  proc.stdin.write('set output \'ROC_'+arg1[0]+'.png\'\n')
+  proc.stdin.write('set output \'ROC_plot.png\'\n')
   proc.stdin.write('set xtics 0.1\n')
   proc.stdin.write('set ytics 0.1\n')
   proc.stdin.write('set key off\n')
